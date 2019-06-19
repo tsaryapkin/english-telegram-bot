@@ -52,19 +52,8 @@ async def get_random_bash_quote():
 async def start(message: types.Message):
     """Handle start command"""
     random_quote = await get_random_bash_quote()
+    print(message.text)
     await message.reply(random_quote, reply_markup=inline_keyboard)
-
-
-@dp.callback_query_handler(func=lambda cb: True)
-async def process_callback_data(callback_query: types.CallbackQuery):
-    """Handle all callback data which is being sent to bot"""
-    action = callback_query.data
-
-    if action == 'refresh':
-        message_id = callback_query.message.message_id
-        chat_id = callback_query.message.chat.id
-        random_quote = await get_random_bash_quote()
-        await bot.edit_message_text(random_quote, chat_id, message_id, reply_markup=inline_keyboard)
 
 
 async def on_startup(dp):
