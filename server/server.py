@@ -1,12 +1,10 @@
-import os
-
-
-
 import logging
 import os
+
 from aiogram import Bot, types, md
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils.executor import start_webhook
+from aiogram.types.inline_keyboard import InlineKeyboardMarkup, InlineKeyboardButton
 
 API_TOKEN = '824051603:AAGl_5lgRtI515dhMB1L63HnItvdsqV-5LU'
 PROJECT_NAME = os.getenv('PROJECT_NAME', 'aiogram-example')
@@ -23,17 +21,21 @@ logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+inline_keyboard = InlineKeyboardMarkup()
+random_button = types.InlineKeyboardButton('Получить случайную цитату')
+inline_keyboard.add(random_button)
 
 
 @dp.message_handler(commands='start')
 async def welcome(message: types.Message):
-    await bot.send_message(
-        message.chat.id,
-        f'Приветствую! Это демонтрационный бот\n'
-        f'Подробная информация на '
-        f'{md.hlink("github", "https://github.com/deploy-your-bot-everywhere/heroku")}',
-        parse_mode=types.ParseMode.HTML,
-        disable_web_page_preview=True)
+    # await bot.send_message(
+    #     message.chat.id,
+    #     f'Приветствую! Это демонтрационный бот\n'
+    #     f'Подробная информация на '
+    #     f'{md.hlink("github", "https://github.com/deploy-your-bot-everywhere/heroku")}',
+    #     parse_mode=types.ParseMode.HTML,
+    #     disable_web_page_preview=True)
+    await message.reply("Приветствую! Это демонтрационный бот\n", reply_markup=inline_keyboard)
 
 
 @dp.message_handler()
