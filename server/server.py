@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 inline_keyboard = InlineKeyboardMarkup()
-random_button = types.InlineKeyboardButton('Получить случайную цитату')
+random_button = InlineKeyboardButton('Получить случайную цитату', callback_data='refresh')
 inline_keyboard.add(random_button)
 
 
