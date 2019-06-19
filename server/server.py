@@ -46,7 +46,8 @@ async def process_callback_data(callback_query: types.CallbackQuery):
     if action == 'refresh':
         message_id = callback_query.message.message_id
         chat_id = callback_query.message.chat.id
-        await bot.edit_message_text("обновленное сообщение", chat_id, message_id, reply_markup=inline_keyboard)
+        await bot.edit_message_text("обновленное сообщение", chat_id, message_id)
+        await bot.send_message(chat_id, "Новое собщение", reply_markup=inline_keyboard)
 
 
 @dp.message_handler()
