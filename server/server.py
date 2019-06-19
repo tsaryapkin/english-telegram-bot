@@ -38,7 +38,7 @@ async def welcome(message: types.Message):
     await message.reply("Приветствую! Это демонтрационный бот\n", reply_markup=inline_keyboard)
 
 
-@dp.callback_query_handler(func=lambda cb: True)
+@dp.callback_query_handler(lambda callback_query: True)
 async def process_callback_data(callback_query: types.CallbackQuery):
     """Handle all callback data which is being sent to bot"""
     action = callback_query.data
