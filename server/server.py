@@ -28,6 +28,7 @@ dp = Dispatcher(bot)
 
 @dp.message_handler()
 async def echo(message: types.Message):
+    print(message.text)
     await bot.send_message(message.chat.id, message.text)
 
 
