@@ -1,3 +1,5 @@
 aiohttp
 asyncpg
 gunicorn
+aiogram
+lxml
